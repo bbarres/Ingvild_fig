@@ -22,7 +22,7 @@ colopop<-brewer.pal(5,"Dark2")
 
 
 ##############################################################################/
-#independant files, ordered by population then by ascending log2 
+#independent files, ordered by population then by ascending log2 
 ##############################################################################/
 
 for (i in 3:(dim(logstattout)[2]-1)) {
@@ -98,7 +98,7 @@ dev.off()
 
 
 ##############################################################################/
-#independant files, ordered by ascending log2 
+#independent files, ordered by ascending log2 
 ##############################################################################/
 
 for (i in 3:(dim(logstattout)[2]-1)) {
