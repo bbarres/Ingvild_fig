@@ -107,21 +107,35 @@ dds19<-DESeq(dds19)
 res19<-results(dds19)
 head(res19[order(res19$padj),])
 summary(res19)
-
 resultsNames(dds19)
+#results for population 120H
 res19_120H<-results(dds19,contrast=c("Status","r","s"))
 summary(res19_120H)
-head(res19_120H)
-res19_148H<-results(dds19,contrast=list(c("Status_r_vs_s","Population148H.Statusr")))
+head(res19_120H[order(res19_120H$padj),])
+plot(sort(log(res19_120H$padj))[1:500])
+abline(h=c(log(0.05),log(0.01),log(0.001)),
+       col=c("green","blue","red"))
+#results for population 148H
+res19_148H<-results(dds19,contrast=list(c("Status_r_vs_s",
+                                          "Population148H.Statusr")))
 summary(res19_148H)
-head(res19_148H)
-res19_173H<-results(dds19,contrast=list(c("Status_r_vs_s","Population173H.Statusr")))
+head(res19_148H[order(res19_148H$padj),])
+plot(sort(log(res19_148H$padj))[1:500])
+abline(h=c(log(0.05),log(0.01),log(0.001)),
+       col=c("green","blue","red"))
+#results for population 173H
+res19_173H<-results(dds19,contrast=list(c("Status_r_vs_s",
+                                          "Population173H.Statusr")))
 summary(res19_173H)
-head(res19_173H)
-
+head(res19_173H[order(res19_173H$padj),])
+plot(sort(log(res19_173H$padj))[1:500])
+abline(h=c(log(0.05),log(0.01),log(0.001)),
+       col=c("green","blue","red"))
 #MA plot and dispersion graphic
-plotMA(res19_148H,ylim=c(-2, 2) )
-plotDispEsts(dds19,ylim=c(1e-6, 1e1) )
+plotMA(res19_120H,ylim=c(-2, 2))
+plotMA(res19_148H,ylim=c(-2, 2))
+plotMA(res19_173H,ylim=c(-2, 2))
+plotDispEsts(dds19,ylim=c(1e-6, 1e1))
 
 
 #2020analysis taking into account population and interac status:population####
@@ -129,21 +143,38 @@ dds20<-DESeq(dds20)
 res20<-results(dds20)
 head(res20[order(res20$padj),])
 summary(res20)
-
+#results for population 120H
 resultsNames(dds20)
 res20_120H<-results(dds20,contrast=c("Status","r","s"))
 summary(res20_120H)
 head(res20_120H)
-res20_148H<-results(dds20,contrast=list(c("Status_r_vs_s","Population148H.Statusr")))
+plot(sort(log(res20_120H$padj))[1:500])
+abline(h=c(log(0.05),log(0.01),log(0.001)),
+       col=c("green","blue","red"))
+#results for population 148H
+res20_148H<-results(dds20,contrast=list(c("Status_r_vs_s",
+                                          "Population148H.Statusr")))
 summary(res20_148H)
 head(res20_148H)
-res20_173H<-results(dds20,contrast=list(c("Status_r_vs_s","Population173H.Statusr")))
+plot(sort(log(res20_148H$padj))[1:500])
+abline(h=c(log(0.05),log(0.01),log(0.001)),
+       col=c("green","blue","red"))
+#results for population 173H
+res20_173H<-results(dds20,contrast=list(c("Status_r_vs_s",
+                                          "Population173H.Statusr")))
 summary(res20_173H)
 head(res20_173H)
-
+plot(sort(log(res20_173H$padj))[1:500])
+abline(h=c(log(0.05),log(0.01),log(0.001)),
+       col=c("green","blue","red"))
 #MA plot and dispersion graphic
 plotMA(res20_148H,ylim=c(-2, 2) )
 plotDispEsts(dds20,ylim=c(1e-6, 1e1) )
+
+#exporting all the results
+combiRez<-cbind(res19_120H,res19_148H,res19_173H,
+                res20_120H,res20_148H,res20_173H)
+write.table(combiRez,file="output/combirez.csv",sep=";")
 
 
 ##############################################################################/
