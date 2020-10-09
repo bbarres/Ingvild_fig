@@ -5,19 +5,31 @@
 ##############################################################################/
 
 #loading the necessary packages
-library(DESeq2)
-library(RColorBrewer)
+library("DESeq2")
+library("RColorBrewer")
+library("pheatmap")
 
 #loading and preparing the dataset
-logstattout<-read.csv("data/log2.csv",sep=";",header=TRUE,
-                      stringsAsFactors=FALSE)
-#creating the "popula" variable to tag each individual
-popula<-as.factor(
-  sapply(strsplit(as.character(logstattout$sorteddatatoutpheno),
-                  split="-"),"[[",1))
-logstattout<-cbind(logstattout,popula)
-#defining a vector of 5 colors, one for each population
-colopop<-brewer.pal(5,"Dark2")
+countdata=read.table("data/BWA-counts-120H-148H-173H-2019x2020.txt",header=T)
+head(countdata)
+summary(countdata)
+coldata=read.table("data/coldata-120H-148H-173H-UT-2019x2020.txt",header=T)
+head(coldata)
+colnames(countdata)=rownames(coldata)
+
+coldata$Status<-as.factor(coldata$Status)
+coldata$Annee<-as.factor(coldata$Annee)
+coldata$Population<-as.factor(coldata$Population)
+
+dds=DESeqDataSetFromMatrix(countdata, coldata, ~Status)
+
+nrow(dds)
+head(counts(dds))
+colData(dds)
+
+#ordering factor levels (default: alphabetical order)
+dds$Status=relevel(dds$Status, ref = "s")
+ddsTxi$Treat=relevel(ddsTxi$Treat, ref = "AT")
 
 
 ##############################################################################/
