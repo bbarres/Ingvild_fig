@@ -23,30 +23,71 @@ regions.wgs <- spTransform(regions,
 
 #load the resistance results for the 2020 campaign
 databruteTOT<-read.delim(
-  "data/data_DC_classes_2020.txt",
+  "data/data_carto_france.txt",
   header = TRUE,
   sep = "\t",
-  colClasses = c("character", "character", "character",
-                 "character", "factor")
+  colClasses = c("character","numeric","numeric",
+                 "numeric","numeric","numeric","numeric",
+                 "numeric","numeric","numeric","numeric",
+                 "numeric","numeric","factor")
 )
+databruteTOT$RS<-rowSums(databruteTOT[,4:13])
+levels(databruteTOT$SeqMeth)<-c(19,17)
+
+#to catch the coordinates
+#locator()
 
 #defining a vector of 5 colors, one for each population
 colopop<-brewer.pal(5,"Dark2")
 
 
 ##############################################################################/
-#code for the maps by mutation 
+#code for the maps by mutation####
 ##############################################################################/
-
-
 
 op<-par(mar=c(0,0,0,0))
 plot(departe.wgs,lwd=0.8,border=grey(0.7))
 plot(regions.wgs,lwd=2.5,add=TRUE)
-
+points(databruteTOT[databruteTOT$RS==0,"Longitude"],
+       databruteTOT[databruteTOT$RS==0,"Latitude"],
+       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS==0,
+                                                "SeqMeth"])),
+       col="black")
+points(databruteTOT[databruteTOT$RS!=0,"Longitude"],
+       databruteTOT[databruteTOT$RS!=0,"Latitude"],
+       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS!=0,
+                                                "SeqMeth"])),
+       col="red")
+polygon(x=c(-1.25,1.57,1.57,-1.25,-1.25),
+        y=c(46.6,46.6,44.9,44.9,46.6),
+        col="transparent",lwd=3,border="lightblue")
+polygon(x=c(2.13,4.95,4.95,2.13,2.13),
+        y=c(48.2,48.2,46.5,46.5,48.2),
+        col="transparent",lwd=3,border="lightblue")
+polygon(x=c(3.59,6.41,6.41,3.59,3.59),
+        y=c(46.0,46.0,44.3,44.3,46.0),
+        col="transparent",lwd=3,border="lightblue")
+polygon(x=c(0.15,2.97,2.97,0.15,0.15),
+        y=c(44.6,44.6,42.9,42.9,44.6),
+        col="transparent",lwd=3,border="lightblue")
 par(op)
 
-
+op<-par(pty="s",mar=c(0,0,0,0))
+plot.new()
+plot.window(xlim=c(-1.25,1.57),ylim=c(46.5,48.2))
+plot(departe.wgs,lwd=0.8,border=grey(0.7),
+     xlim=c(-1.25,1.57),ylim=c(46.5,48.2),add=TRUE)
+points(databruteTOT[databruteTOT$RS==0,"Longitude"],
+       databruteTOT[databruteTOT$RS==0,"Latitude"],
+       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS==0,
+                                                "SeqMeth"])),
+       col="black",xlim=c(-1.25,1.57),ylim=c(46.5,48.2))
+points(databruteTOT[databruteTOT$RS!=0,"Longitude"],
+       databruteTOT[databruteTOT$RS!=0,"Latitude"],
+       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS!=0,
+                                                "SeqMeth"])),
+       col="red",xlim=c(-1.25,1.57),ylim=c(46.5,48.2))
+par(op)
 
 ##############################################################################/
 #END
