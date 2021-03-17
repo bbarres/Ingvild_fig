@@ -9,6 +9,7 @@ library(rgdal)
 library(rgeos)
 library(plotrix)
 library(mapplots)
+library(raster)
 library(RColorBrewer)
 
 #load geographical data
@@ -20,6 +21,9 @@ departe.wgs <- spTransform(departe,
 #changing the projection of the map
 regions.wgs <- spTransform(regions,
                            CRS("+proj=longlat +datum=WGS84"))
+
+#crop a subpart of map
+departe.wgs.1<-crop(departe.wgs,extent(-1.25,1.57,44.9,46.6))
 
 #load the resistance results for the 2020 campaign
 databruteTOT<-read.delim(
@@ -33,6 +37,12 @@ databruteTOT<-read.delim(
 )
 databruteTOT$RS<-rowSums(databruteTOT[,4:13])
 levels(databruteTOT$SeqMeth)<-c(19,17)
+
+#turning this dataframe into a spatial dataframe
+ambroFiel<-SpatialPointsDataFrame(coords=databruteTOT[,c(3,2)],
+                                  data=databruteTOT,
+                                  proj4string=CRS("+proj=longlat +datum=WGS84")
+                                  )
 
 #to catch the coordinates
 #locator()
@@ -74,20 +84,34 @@ par(op)
 
 op<-par(pty="s",mar=c(0,0,0,0))
 plot.new()
-plot.window(xlim=c(-1.25,1.57),ylim=c(46.5,48.2))
+plot.window(xlim=c(-1.25,1.57),ylim=c(44.9,46.6))
 plot(departe.wgs,lwd=0.8,border=grey(0.7),
-     xlim=c(-1.25,1.57),ylim=c(46.5,48.2),add=TRUE)
+     xlim=c(-1.25,1.57),ylim=c(44.9,46.6),add=TRUE)
 points(databruteTOT[databruteTOT$RS==0,"Longitude"],
        databruteTOT[databruteTOT$RS==0,"Latitude"],
        pch=as.numeric(as.character(databruteTOT[databruteTOT$RS==0,
                                                 "SeqMeth"])),
-       col="black",xlim=c(-1.25,1.57),ylim=c(46.5,48.2))
+       col="black",xlim=c(-1.25,1.57),ylim=c(44.9,46.6))
 points(databruteTOT[databruteTOT$RS!=0,"Longitude"],
        databruteTOT[databruteTOT$RS!=0,"Latitude"],
        pch=as.numeric(as.character(databruteTOT[databruteTOT$RS!=0,
                                                 "SeqMeth"])),
-       col="red",xlim=c(-1.25,1.57),ylim=c(46.5,48.2))
+       col="red",xlim=c(-1.25,1.57),ylim=c(44.9,46.6))
 par(op)
+
+op<-par(mar=c(0,0,0,0))
+plot(departe.wgs.1,lwd=0.8,border=grey(0.7))
+plot(ambroFiel[ambroFiel$RS==0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS==0,]$SeqMeth)),
+     col="black",
+     add=TRUE)
+plot(ambroFiel[ambroFiel$RS!=0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS!=0,]$SeqMeth)),
+     col="red",
+     add=TRUE)
+par(op)
+
+
 
 ##############################################################################/
 #END
