@@ -16,10 +16,10 @@ library(RColorBrewer)
 load("data/regionsLight.RData")
 load("data/departeLight.RData")
 #changing the projection of the map
-departe.wgs <- spTransform(departe,
+departe.wgs <- spTransform(departeLight,
                            CRS("+proj=longlat +datum=WGS84"))
 #changing the projection of the map
-regions.wgs <- spTransform(regions,
+regions.wgs <- spTransform(regionsLight,
                            CRS("+proj=longlat +datum=WGS84"))
 
 #crop a subpart of map
