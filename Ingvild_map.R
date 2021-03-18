@@ -13,8 +13,8 @@ library(raster)
 library(RColorBrewer)
 
 #load geographical data
-load("data/regions.RData")
-load("data/departe.RData")
+load("data/regionsLight.RData")
+load("data/departeLight.RData")
 #changing the projection of the map
 departe.wgs <- spTransform(departe,
                            CRS("+proj=longlat +datum=WGS84"))
@@ -24,6 +24,13 @@ regions.wgs <- spTransform(regions,
 
 #crop a subpart of map
 departe.wgs.1<-crop(departe.wgs,extent(-1.25,1.57,44.9,46.6))
+departe.wgs.2<-crop(departe.wgs,extent(2.13,4.95,46.5,48.2))
+departe.wgs.3<-crop(departe.wgs,extent(3.59,6.41,44.3,46.0))
+departe.wgs.4<-crop(departe.wgs,extent(0.15,2.97,42.9,44.6))
+regions.wgs.1<-crop(regions.wgs,extent(-1.25,1.57,44.9,46.6))
+regions.wgs.2<-crop(regions.wgs,extent(2.13,4.95,46.5,48.2))
+regions.wgs.3<-crop(regions.wgs,extent(3.59,6.41,44.3,46.0))
+regions.wgs.4<-crop(regions.wgs,extent(0.15,2.97,42.9,44.6))
 
 #load the resistance results for the 2020 campaign
 databruteTOT<-read.delim(
@@ -55,19 +62,18 @@ colopop<-brewer.pal(5,"Dark2")
 #code for the maps by mutation####
 ##############################################################################/
 
+#all mutations on one map
 op<-par(mar=c(0,0,0,0))
 plot(departe.wgs,lwd=0.8,border=grey(0.7))
-plot(regions.wgs,lwd=2.5,add=TRUE)
-points(databruteTOT[databruteTOT$RS==0,"Longitude"],
-       databruteTOT[databruteTOT$RS==0,"Latitude"],
-       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS==0,
-                                                "SeqMeth"])),
-       col="black")
-points(databruteTOT[databruteTOT$RS!=0,"Longitude"],
-       databruteTOT[databruteTOT$RS!=0,"Latitude"],
-       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS!=0,
-                                                "SeqMeth"])),
-       col="red")
+plot(regions.wgs,lwd=1.8,add=TRUE)
+plot(ambroFiel[ambroFiel$RS==0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS==0,]$SeqMeth)),
+     col=rgb(0,0,0,150,maxColorValue=255),cex=0.8,
+     add=TRUE)
+plot(ambroFiel[ambroFiel$RS!=0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS!=0,]$SeqMeth)),
+     col=rgb(255,0,0,150,maxColorValue=255),cex=0.8,
+     add=TRUE)
 polygon(x=c(-1.25,1.57,1.57,-1.25,-1.25),
         y=c(46.6,46.6,44.9,44.9,46.6),
         col="transparent",lwd=3,border="lightblue")
@@ -82,32 +88,81 @@ polygon(x=c(0.15,2.97,2.97,0.15,0.15),
         col="transparent",lwd=3,border="lightblue")
 par(op)
 
-op<-par(pty="s",mar=c(0,0,0,0))
-plot.new()
-plot.window(xlim=c(-1.25,1.57),ylim=c(44.9,46.6))
-plot(departe.wgs,lwd=0.8,border=grey(0.7),
-     xlim=c(-1.25,1.57),ylim=c(44.9,46.6),add=TRUE)
-points(databruteTOT[databruteTOT$RS==0,"Longitude"],
-       databruteTOT[databruteTOT$RS==0,"Latitude"],
-       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS==0,
-                                                "SeqMeth"])),
-       col="black",xlim=c(-1.25,1.57),ylim=c(44.9,46.6))
-points(databruteTOT[databruteTOT$RS!=0,"Longitude"],
-       databruteTOT[databruteTOT$RS!=0,"Latitude"],
-       pch=as.numeric(as.character(databruteTOT[databruteTOT$RS!=0,
-                                                "SeqMeth"])),
-       col="red",xlim=c(-1.25,1.57),ylim=c(44.9,46.6))
+#export to .pdf 7 x 7 inches
+
+#all mutations on one map
+op<-par(mar=c(0,0,1,0),mfrow=c(2,5))
+for (i in 4:13) {
+  plot(departe.wgs,lwd=0.8,border=grey(0.7),
+       main=colnames(ambroFiel@data)[i])
+  plot(regions.wgs,lwd=1.8,add=TRUE)
+  plot(ambroFiel[ambroFiel@data[,i]==0,],
+       pch=as.numeric(as.character(ambroFiel[ambroFiel@data[,i]==0,]$SeqMeth)),
+       col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+       add=TRUE)
+  plot(ambroFiel[ambroFiel@data[,i]!=0,],
+       pch=as.numeric(as.character(ambroFiel[ambroFiel@data[,i]!=0,]$SeqMeth)),
+       col=rgb(255,0,0,255,maxColorValue=255),cex=1.5,
+       add=TRUE)
+}
 par(op)
+
+#export to .pdf 16 x 7 inches
+
+
+##############################################################################/
+#code with cropped maps####
+##############################################################################/
 
 op<-par(mar=c(0,0,0,0))
 plot(departe.wgs.1,lwd=0.8,border=grey(0.7))
+plot(regions.wgs.1,lwd=2.5,add=TRUE)
 plot(ambroFiel[ambroFiel$RS==0,],
      pch=as.numeric(as.character(ambroFiel[ambroFiel$RS==0,]$SeqMeth)),
-     col="black",
+     col=rgb(0,0,0,150,maxColorValue=255),cex=2,
      add=TRUE)
 plot(ambroFiel[ambroFiel$RS!=0,],
      pch=as.numeric(as.character(ambroFiel[ambroFiel$RS!=0,]$SeqMeth)),
-     col="red",
+     col=rgb(255,0,0,150,maxColorValue=255),cex=2,
+     add=TRUE)
+par(op)
+
+op<-par(mar=c(0,0,0,0))
+plot(departe.wgs.2,lwd=0.8,border=grey(0.7))
+plot(regions.wgs.2,lwd=2.5,add=TRUE)
+plot(ambroFiel[ambroFiel$RS==0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS==0,]$SeqMeth)),
+     col=rgb(0,0,0,150,maxColorValue=255),cex=2,
+     add=TRUE)
+plot(ambroFiel[ambroFiel$RS!=0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS!=0,]$SeqMeth)),
+     col=rgb(255,0,0,150,maxColorValue=255),cex=2,
+     add=TRUE)
+par(op)
+
+op<-par(mar=c(0,0,0,0))
+plot(departe.wgs.3,lwd=0.8,border=grey(0.7))
+plot(regions.wgs.3,lwd=2.5,add=TRUE)
+plot(ambroFiel[ambroFiel$RS==0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS==0,]$SeqMeth)),
+     col=rgb(0,0,0,150,maxColorValue=255),cex=2,
+     add=TRUE)
+plot(ambroFiel[ambroFiel$RS!=0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS!=0,]$SeqMeth)),
+     col=rgb(255,0,0,150,maxColorValue=255),cex=2,
+     add=TRUE)
+par(op)
+
+op<-par(mar=c(0,0,0,0))
+plot(departe.wgs.4,lwd=0.8,border=grey(0.7))
+plot(regions.wgs.4,lwd=2.5,add=TRUE)
+plot(ambroFiel[ambroFiel$RS==0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS==0,]$SeqMeth)),
+     col=rgb(0,0,0,150,maxColorValue=255),cex=2,
+     add=TRUE)
+plot(ambroFiel[ambroFiel$RS!=0,],
+     pch=as.numeric(as.character(ambroFiel[ambroFiel$RS!=0,]$SeqMeth)),
+     col=rgb(255,0,0,150,maxColorValue=255),cex=2,
      add=TRUE)
 par(op)
 
