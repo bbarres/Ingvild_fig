@@ -262,7 +262,119 @@ scalebar(c(191260,6060000),300000,"km",division.cex=1)
 par(op)
 #export to .pdf 16 x 7 inches
 
+#each position on separate map
+op<-par(mar=c(0,0,1,0),mfrow=c(2,3))
 
+#position 197
+plot(departeLight,lwd=0.8,border=grey(0.7),
+       main="Position 197")
+plot(regionsLight,lwd=1.8,add=TRUE)
+plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro@data[,6]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,6]!=0,]$SeqMeth)),
+     col="red",cex=1.5,
+     add=TRUE)
+plot(ambro[ambro@data[,10]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,10]!=0,]$SeqMeth)),
+     col="blue",cex=1.5,
+     add=TRUE)
+plot(ambro[ambro@data[,11]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,11]!=0,]$SeqMeth)),
+     col="purple",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Gln197","Ser197","Thr197"),cex=1,pt.cex=1.8,
+       y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red","blue","purple"),bg="transparent",bty="n")
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+
+#position 205
+plot(departeLight,lwd=0.8,border=grey(0.7),
+     main="Position 205")
+plot(regionsLight,lwd=1.8,add=TRUE)
+plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro@data[,12]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,12]!=0,]$SeqMeth)),
+     col="red",cex=1.5,
+     add=TRUE)
+plot(ambro[ambro@data[,13]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,13]!=0,]$SeqMeth)),
+     col="blue",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Thr205","Val205"),cex=1,pt.cex=1.8,
+       y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red","blue"),bg="transparent",bty="n")
+
+#position 376
+plot(departeLight,lwd=0.8,border=grey(0.7),
+     main="Position 376")
+plot(regionsLight,lwd=1.8,add=TRUE)
+plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro@data[,7]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,7]!=0,]$SeqMeth)),
+     col="red",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Glu376"),cex=1,pt.cex=1.8,
+       y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red"),bg="transparent",bty="n")
+
+#position 574
+plot(departeLight,lwd=0.8,border=grey(0.7),
+     main="Position 574")
+plot(regionsLight,lwd=1.8,add=TRUE)
+plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro@data[,4]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,4]!=0,]$SeqMeth)),
+     col="red",cex=1.5,
+     add=TRUE)
+plot(ambro[ambro@data[,9]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,9]!=0,]$SeqMeth)),
+     col="blue",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Arg574","Leu574"),cex=1,pt.cex=1.8,
+       y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red","blue"),bg="transparent",bty="n")
+
+#position 578
+plot(departeLight,lwd=0.8,border=grey(0.7),
+     main="Position 578")
+plot(regionsLight,lwd=1.8,add=TRUE)
+plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro@data[,8]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,8]!=0,]$SeqMeth)),
+     col="red",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Ile578"),cex=1,pt.cex=1.8,
+       y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red"),bg="transparent",bty="n")
+
+#position 654
+plot(departeLight,lwd=0.8,border=grey(0.7),
+     main="Position 654")
+plot(regionsLight,lwd=1.8,add=TRUE)
+plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro@data[,5]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,5]!=0,]$SeqMeth)),
+     col="red",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Arg654"),cex=1,pt.cex=1.8,
+       y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red"),bg="transparent",bty="n")
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+
+par(op)
+#export to .pdf 12 x 7 inches
 
 
 ##############################################################################/
