@@ -464,5 +464,39 @@ par(op)
 
 
 ##############################################################################/
+#maps screening vs monitoring####
+##############################################################################/
+
+op<-par(mar=c(0,0,1,0),mfrow=c(1,2))
+#original screening
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Screening (N=45)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$RS==0 & ambro$SampRound=="Screening",],
+     pch=1,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     add=TRUE)
+plot(ambro[ambro$RS!=0 & ambro$SampRound=="Screening",],
+     pch=1,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=1.1,
+     add=TRUE)
+#NGS monitoring
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Monitoring (N=210)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$RS==0 & ambro$SampRound!="Screening",],
+     pch=3,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=0.4,
+     add=TRUE)
+plot(ambro[ambro$RS!=0 & ambro$SampRound!="Screening",],
+     pch=3,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=0.4,
+     add=TRUE)
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+par(op)
+#export to .pdf 12 x 5 inches
+
+
+##############################################################################/
 #END
 ##############################################################################/
