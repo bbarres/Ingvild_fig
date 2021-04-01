@@ -20,16 +20,16 @@ load("data/regionsLight.RData")
 load("data/departeLight.RData")
 
 #changing the projection of the map to WGS84
-departe.wgs <- spTransform(departe,
-                            CRS("+proj=longlat +datum=WGS84"))
+departe.wgs<-spTransform(departe,
+                         CRS("+proj=longlat +datum=WGS84"))
 #changing the projection of the map
-regions.wgs <- spTransform(regions,
-                            CRS("+proj=longlat +datum=WGS84"))
-departeL.wgs <- spTransform(departeLight,
-                           CRS("+proj=longlat +datum=WGS84"))
+regions.wgs<-spTransform(regions,
+                         CRS("+proj=longlat +datum=WGS84"))
+departeL.wgs<-spTransform(departeLight,
+                          CRS("+proj=longlat +datum=WGS84"))
 #changing the projection of the map
-regionsL.wgs <- spTransform(regionsLight,
-                           CRS("+proj=longlat +datum=WGS84"))
+regionsL.wgs<-spTransform(regionsLight,
+                          CRS("+proj=longlat +datum=WGS84"))
 
 #crop a subparts of the map
 departe.1<-crop(departe,extent(364666.8,590540.8,6431338.8,6612096.8))
@@ -55,21 +55,22 @@ regions.wgs.4<-crop(regions.wgs,extent(0.15,2.97,42.9,44.6))
 #load the resistance results for the 2020 campaign
 databruteTOT<-read.delim(
   "data/data_carto_france.txt",
-  header = TRUE,
-  sep = "\t",
-  colClasses = c("character","numeric","numeric",
-                 "numeric","numeric","numeric","numeric",
-                 "numeric","numeric","numeric","numeric",
-                 "numeric","numeric","factor")
+  header=TRUE,
+  sep="\t",
+  colClasses=c("character","numeric","numeric",
+               "numeric","numeric","numeric","numeric",
+               "numeric","numeric","numeric","numeric",
+               "numeric","numeric","numeric","factor",
+               "factor")
 )
-databruteTOT$RS<-rowSums(databruteTOT[,4:13])
+databruteTOT$RS<-rowSums(databruteTOT[,4:14])
 levels(databruteTOT$SeqMeth)<-c(19,17)
 
 #turning this dataframe into a spatial dataframe (wgs84)
 ambro.wgs<-SpatialPointsDataFrame(coords=databruteTOT[,c(3,2)],
                                   data=databruteTOT,
                                   proj4string=CRS("+proj=longlat +datum=WGS84")
-                                  )
+)
 ambro<-spTransform(ambro.wgs,CRS("+init=epsg:2154"))
 
 #to catch the coordinates
@@ -77,7 +78,7 @@ ambro<-spTransform(ambro.wgs,CRS("+init=epsg:2154"))
 
 
 ##############################################################################/
-#defining additionnal function for the mapping####
+#defining additional function for the mapping####
 ##############################################################################/
 
 
@@ -132,11 +133,11 @@ par(op)
 #export to .pdf 7 x 7 inches
 
 #all mutations on one map
-op<-par(mar=c(0,0,1,0),mfrow=c(2,5))
-for (i in 4:13) {
-  plot(departe.wgs,lwd=0.8,border=grey(0.7),
+op<-par(mar=c(0,0,1,0),mfrow=c(2,6))
+for (i in 4:14) {
+  plot(departeL.wgs,lwd=0.8,border=grey(0.7),
        main=colnames(ambro.wgs@data)[i])
-  plot(regions.wgs,lwd=1.8,add=TRUE)
+  plot(regionsL.wgs,lwd=1.8,add=TRUE)
   plot(ambro.wgs[ambro.wgs@data[,i]==0,],
        pch=as.numeric(as.character(ambro.wgs[ambro.wgs@data[,i]==0,]$SeqMeth)),
        col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
@@ -148,7 +149,7 @@ for (i in 4:13) {
 }
 par(op)
 
-#export to .pdf 16 x 7 inches
+#export to .pdf 18 x 7 inches
 
 
 ##############################################################################/
@@ -244,8 +245,8 @@ par(op)
 #export to .pdf 7 x 7 inches
 
 #each mutations on separate map
-op<-par(mar=c(0,0,1,0),mfrow=c(2,5))
-for (i in 4:13) {
+op<-par(mar=c(0,0,1,0),mfrow=c(2,6))
+for (i in 4:14) {
   plot(departeLight,lwd=0.8,border=grey(0.7),
        main=colnames(ambro@data)[i])
   plot(regionsLight,lwd=1.8,add=TRUE)
@@ -260,7 +261,7 @@ for (i in 4:13) {
 }
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 par(op)
-#export to .pdf 16 x 7 inches
+#export to .pdf 18 x 7 inches
 
 #each position on separate map
 op<-par(mar=c(0,0,1,0),mfrow=c(2,3))
@@ -304,9 +305,13 @@ plot(ambro[ambro@data[,13]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,13]!=0,]$SeqMeth)),
      col="blue",cex=1.5,
      add=TRUE)
-legend(57000,7160000,legend=c("Thr205","Val205"),cex=1,pt.cex=1.8,
-       y.intersp=0.5,x.intersp=0.5,
-       pch=19,col=c("red","blue"),bg="transparent",bty="n")
+plot(ambro[ambro@data[,14]!=0,],
+     pch=as.numeric(as.character(ambro[ambro@data[,13]!=0,]$SeqMeth)),
+     col="purple",cex=1.5,
+     add=TRUE)
+legend(57000,7160000,legend=c("Thr205.1","Thr205.2","Val205"),cex=1,
+       pt.cex=1.8,y.intersp=0.5,x.intersp=0.5,
+       pch=19,col=c("red","blue","purple"),bg="transparent",bty="n")
 
 #position 376
 plot(departeLight,lwd=0.8,border=grey(0.7),
@@ -374,6 +379,7 @@ legend(57000,7160000,legend=c("Arg654"),cex=1,pt.cex=1.8,
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 par(op)
+
 #export to .pdf 12 x 7 inches
 
 
