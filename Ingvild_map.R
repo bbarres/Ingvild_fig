@@ -61,7 +61,7 @@ databruteTOT<-read.delim(
                "numeric","numeric","numeric","numeric",
                "numeric","numeric","numeric","numeric",
                "numeric","numeric","numeric","factor",
-               "factor")
+               "factor","factor","factor")
 )
 databruteTOT$RS<-rowSums(databruteTOT[,4:14])
 levels(databruteTOT$SeqMeth)<-c(19,17)
@@ -491,6 +491,40 @@ plot(ambro[ambro$RS==0 & ambro$SampRound!="Screening",],
 plot(ambro[ambro$RS!=0 & ambro$SampRound!="Screening",],
      pch=3,
      col=rgb(255,0,0,250,maxColorValue=255),cex=0.4,
+     add=TRUE)
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+par(op)
+#export to .pdf 12 x 5 inches
+
+
+##############################################################################/
+#maps phenotypes####
+##############################################################################/
+
+op<-par(mar=c(0,0,1,0),mfrow=c(1,2))
+#Imazamox phenotype
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Imazamox (N=39)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$Imz=="S",],
+     pch=19,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1,
+     add=TRUE)
+plot(ambro[ambro$Imz=="R",],
+     pch=19,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+     add=TRUE)
+#Tribenuron phenotype
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Tribenuron (N=36)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$Tbn=="S",],
+     pch=19,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1,
+     add=TRUE)
+plot(ambro[ambro$Tbn=="R",],
+     pch=19,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
      add=TRUE)
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 par(op)
