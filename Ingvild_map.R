@@ -498,9 +498,10 @@ par(op)
 
 
 ##############################################################################/
-#maps phenotypes####
+#maps phenotype####
 ##############################################################################/
 
+#2 maps with only independent information
 op<-par(mar=c(0,0,1,0),mfrow=c(1,2))
 #Imazamox phenotype
 plot(departe,lwd=0.8,border=grey(0.7),
@@ -511,6 +512,40 @@ plot(ambro[ambro$Imz=="S",],
      col=rgb(50,100,0,150,maxColorValue=255),cex=1,
      add=TRUE)
 plot(ambro[ambro$Imz=="R",],
+     pch=19,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+     add=TRUE)
+#Tribenuron phenotype
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Tribenuron (N=36)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$Tbn=="S",],
+     pch=19,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1,
+     add=TRUE)
+plot(ambro[ambro$Tbn=="R",],
+     pch=19,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+     add=TRUE)
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+par(op)
+#export to .pdf 12 x 5 inches
+
+#2 maps with both information
+op<-par(mar=c(0,0,1,0),mfrow=c(1,2))
+#Imazamox phenotype
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Imazamox (N=39)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$Imz=="S",],
+     pch=19,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1,
+     add=TRUE)
+plot(ambro[ambro$Imz=="R" & ambro$Tbn=="R",],
+     pch=19,
+     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+     add=TRUE)
+plot(ambro[ambro$Imz=="R" & ambro$Tbn=="R",],
      pch=19,
      col=rgb(255,0,0,250,maxColorValue=255),cex=1,
      add=TRUE)
