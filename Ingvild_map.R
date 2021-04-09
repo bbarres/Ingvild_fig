@@ -539,15 +539,19 @@ plot(departe,lwd=0.8,border=grey(0.7),
 plot(regions,lwd=1.8,add=TRUE)
 plot(ambro[ambro$Imz=="S",],
      pch=19,
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1,
+     col=rgb(50,100,0,100,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$Imz=="R" & (ambro$Tbn=="S"|ambro$Tbn=="Fail"),],
+     pch=19,
+     col=rgb(255,165,0,180,maxColorValue=255),cex=1.2,
      add=TRUE)
 plot(ambro[ambro$Imz=="R" & ambro$Tbn=="R",],
      pch=19,
-     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+     col=rgb(255,0,0,210,maxColorValue=255),cex=1.2,
      add=TRUE)
-plot(ambro[ambro$Imz=="R" & ambro$Tbn=="R",],
-     pch=19,
-     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+plot(ambro[ambro$Imz=="Fail",],
+     pch=21,
+     col="black",bg="transparent",cex=1.2,
      add=TRUE)
 #Tribenuron phenotype
 plot(departe,lwd=0.8,border=grey(0.7),
@@ -555,11 +559,19 @@ plot(departe,lwd=0.8,border=grey(0.7),
 plot(regions,lwd=1.8,add=TRUE)
 plot(ambro[ambro$Tbn=="S",],
      pch=19,
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1,
+     col=rgb(50,100,0,150,maxColorValue=255),cex=1.2,
      add=TRUE)
-plot(ambro[ambro$Tbn=="R",],
+plot(ambro[ambro$Tbn=="R" & (ambro$Imz=="S"|ambro$Imz=="Fail"),],
      pch=19,
-     col=rgb(255,0,0,250,maxColorValue=255),cex=1,
+     col=rgb(255,165,0,180,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$Tbn=="R" & ambro$Imz=="R",],
+     pch=19,
+     col=rgb(255,0,0,210,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$Tbn=="Fail",],
+     pch=21,
+     col="black",bg="transparent",cex=1.2,
      add=TRUE)
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 par(op)
