@@ -578,6 +578,37 @@ par(op)
 #export to .pdf 12 x 5 inches
 
 
+#one map for the 4 possibilities
+op<-par(mar=c(0,0,1,0))
+#Imazamox and/or Tribenuron phenotypes
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Bioassay phenotype (N=41)")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[(ambro$Imz=="S" & ambro$Tbn=="S")|
+             (ambro$Imz=="S" & ambro$Tbn=="Fail")|
+             (ambro$Imz=="Fail" & ambro$Tbn=="S"),],
+     pch=21,col="transparent",
+     bg=rgb(50,100,0,100,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$Imz=="R" & (ambro$Tbn=="S"|ambro$Tbn=="Fail"),],
+     pch=21,col="transparent",
+     bg=rgb(255,205,42,210,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$Tbn=="R" & (ambro$Imz=="S"|ambro$Imz=="Fail"),],
+     pch=21,col="transparent",
+     bg=rgb(255,162,12,210,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$Imz=="R" & ambro$Tbn=="R",],
+     pch=21,col="transparent",
+     bg=rgb(255,30,30,210,maxColorValue=255),cex=1.2,
+     add=TRUE)
+plot(ambro[ambro$RS==1 & ambro$Imz!="Untest",],
+     pch=21,
+     col="blue",bg="transparent",cex=1.2,
+     add=TRUE)
+par(op)
+
+
 ##############################################################################/
 #END
 ##############################################################################/
