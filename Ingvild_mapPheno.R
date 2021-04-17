@@ -140,6 +140,9 @@ plot(PheNew[PheNew$RS==1 & PheNew$Imz!="Untest",],
      pch=21,
      col="blue",bg="transparent",cex=1.2,
      add=TRUE)
+#if you want to add the name of the populations
+text(x=PheNew$Longitude,y=PheNew$Latitude,
+     labels=PheNew@data$Code_ID,cex=0.2)
 plot(PheOri,pch=19,cex=0.2,add=TRUE)
 par(op)
 
