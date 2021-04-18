@@ -133,7 +133,7 @@ legend(57000,7160000,
                     "red","blue","purple"),bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
        y.intersp=0.5,x.intersp=0.5,
-       pch=c(1,2),col=c("black"),bg="transparent",bty="n")
+       pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 205
@@ -162,7 +162,7 @@ legend(57000,7160000,
                     "red","blue","purple"),bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
        y.intersp=0.5,x.intersp=0.5,
-       pch=c(1,2),col=c("black"),bg="transparent",bty="n")
+       pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 376
@@ -183,7 +183,7 @@ legend(57000,7160000,
        bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
        y.intersp=0.5,x.intersp=0.5,
-       pch=c(1,2),col=c("black"),bg="transparent",bty="n")
+       pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 574
@@ -208,7 +208,7 @@ legend(57000,7160000,
        bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
        y.intersp=0.5,x.intersp=0.5,
-       pch=c(1,2),col=c("black"),bg="transparent",bty="n")
+       pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 578
@@ -230,7 +230,7 @@ legend(57000,7160000,
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
        y.intersp=0.5,x.intersp=0.5,
-       pch=c(1,2),col=c("black"),bg="transparent",bty="n")
+       pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 par(op)
