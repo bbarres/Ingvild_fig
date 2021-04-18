@@ -115,36 +115,60 @@ scalebar <- function(loc,length,unit="km",division.cex=.8,...) {
 #one map for the 4 possibilities
 op<-par(mar=c(0,0,1,0))
 #Imazamox and/or Tribenuron phenotypes
-plot(departe,lwd=0.8,border=grey(0.7),
+plot(departe,lwd=0.8,border=grey(0.9),
      main="Bioassay phenotype (N=41)")
 plot(regions,lwd=1.8,add=TRUE)
+segments(PheNew$Longitude,PheNew$Latitude,
+         PheOri$Longitude,PheOri$Latitude,
+         col=grey(0.4,1),lwd=0.7)
+plot(PheOri,pch=21,cex=0.3,bg=grey(0.4,1),col="black",add=TRUE)
 plot(PheNew[(PheNew$Imz=="S" & PheNew$Tbn=="S")|
              (PheNew$Imz=="S" & PheNew$Tbn=="Fail")|
              (PheNew$Imz=="Fail" & PheNew$Tbn=="S"),],
      pch=21,col="transparent",
-     bg=rgb(50,100,0,100,maxColorValue=255),cex=1.2,
+     bg=rgb(50,100,0,255,maxColorValue=255),cex=1.2,
      add=TRUE)
 plot(PheNew[PheNew$Imz=="R" & (PheNew$Tbn=="S"|PheNew$Tbn=="Fail"),],
      pch=21,col="transparent",
-     bg=rgb(255,205,42,210,maxColorValue=255),cex=1.2,
+     bg=rgb(244,114,208,255,maxColorValue=255),cex=1.2,
      add=TRUE)
 plot(PheNew[PheNew$Tbn=="R" & (PheNew$Imz=="S"|PheNew$Imz=="Fail"),],
      pch=21,col="transparent",
-     bg=rgb(255,162,12,210,maxColorValue=255),cex=1.2,
+     bg=rgb(250,104,0,255,maxColorValue=255),cex=1.2,
      add=TRUE)
 plot(PheNew[PheNew$Imz=="R" & PheNew$Tbn=="R",],
      pch=21,col="transparent",
-     bg=rgb(255,30,30,210,maxColorValue=255),cex=1.2,
+     bg=rgb(162,0,37,255,maxColorValue=255),cex=1.2,
      add=TRUE)
-plot(PheNew[PheNew$RS==1 & PheNew$Imz!="Untest",],
+plot(PheNew[PheNew$RS=="Mut",],
      pch=21,
-     col="blue",bg="transparent",cex=1.2,
+     col=rgb(0,80,239,255,maxColorValue=255),
+     bg="transparent",cex=1.2,
      add=TRUE)
-#if you want to add the name of the populations
-text(x=PheNew$Longitude,y=PheNew$Latitude,
-     labels=PheNew@data$Code_ID,cex=0.2)
-plot(PheOri,pch=19,cex=0.2,add=TRUE)
+legend(57000,7160000,
+       legend=c("Sensitive",
+                "Resistant to Imz",
+                "Resistant to Tbn",
+                "Resistant to Imz and Tbn",
+                "Mutation detected"),
+       cex=0.8,pt.cex=1,y.intersp=0.8,x.intersp=0.5,
+       pch=c(19,19,19,19,1),
+       col=c(rgb(50,100,0,255,maxColorValue=255),
+             rgb(244,114,208,255,maxColorValue=255),
+             rgb(250,104,0,255,maxColorValue=255),
+             rgb(162,0,37,255,maxColorValue=255),
+             rgb(0,80,239,255,maxColorValue=255)),
+       bg="transparent",bty="n")
+text(594045.1,6502086,labels="NAQ",cex=1.2,font=2)
+text(594045.1,6751660,labels="CVL",cex=1.2,font=2)
+text(742229.5,6515085,labels="ARA",cex=1.2,font=2)
+text(708433,6333104,labels="OCC",cex=1.2,font=2)
+# #if you want to add the name of the populations
+# text(x=PheNew$Longitude,y=PheNew$Latitude,
+#      labels=PheNew@data$Code_ID,cex=0.2)
 par(op)
+
+#export to .pdf 5 x 5 inches
 
 
 ##############################################################################/
