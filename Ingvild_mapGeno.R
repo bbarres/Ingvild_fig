@@ -64,7 +64,7 @@ databruteTOT<-read.delim(
                "factor","factor","factor")
 )
 databruteTOT$RS<-rowSums(databruteTOT[,4:14])
-levels(databruteTOT$SeqMeth)<-c(19,17)
+levels(databruteTOT$SeqMeth)<-c(21,24)
 
 #turning this dataframe into a spatial dataframe (wgs84)
 ambro.wgs<-SpatialPointsDataFrame(coords=databruteTOT[,c(3,2)],
@@ -111,19 +111,20 @@ plot(departeLight,lwd=0.8,border=grey(0.7),
      main="Position 197")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     col="transparent",
+     bg=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
      add=TRUE)
 plot(ambro[ambro@data[,6]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,6]!=0,]$SeqMeth)),
-     col="red",cex=1.5,
+     bg="red",cex=1.5,
      add=TRUE)
 plot(ambro[ambro@data[,10]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,10]!=0,]$SeqMeth)),
-     col="blue",cex=1.5,
+     bg="blue",cex=1.5,
      add=TRUE)
 plot(ambro[ambro@data[,11]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,11]!=0,]$SeqMeth)),
-     col="purple",cex=1.5,
+     bg="purple",cex=1.5,
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 197","Gln197","Ser197","Thr197"),
@@ -141,19 +142,20 @@ plot(departeLight,lwd=0.8,border=grey(0.7),
      main="Position 205")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     col="transparent",
+     bg=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
      add=TRUE)
 plot(ambro[ambro@data[,12]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,12]!=0,]$SeqMeth)),
-     col="red",cex=1.5,
+     bg="red",cex=1.5,
      add=TRUE)
 plot(ambro[ambro@data[,13]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,13]!=0,]$SeqMeth)),
-     col="blue",cex=1.5,
+     bg="blue",cex=1.5,
      add=TRUE)
 plot(ambro[ambro@data[,14]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,13]!=0,]$SeqMeth)),
-     col="purple",cex=1.5,
+     bg="purple",cex=1.5,
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 205","Thr205.1","Thr205.2","Val205"),
@@ -170,11 +172,12 @@ plot(departeLight,lwd=0.8,border=grey(0.7),
      main="Position 376")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     col="transparent",
+     bg=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
      add=TRUE)
 plot(ambro[ambro@data[,7]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,7]!=0,]$SeqMeth)),
-     col="red",cex=1.5,
+     bg="red",cex=1.5,
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 376","Glu376"),cex=1,pt.cex=1.8,
@@ -191,15 +194,16 @@ plot(departeLight,lwd=0.8,border=grey(0.7),
      main="Position 574")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     col="transparent",
+     bg=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
      add=TRUE)
 plot(ambro[ambro@data[,4]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,4]!=0,]$SeqMeth)),
-     col="red",cex=1.5,
+     bg="red",cex=1.5,
      add=TRUE)
 plot(ambro[ambro@data[,9]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,9]!=0,]$SeqMeth)),
-     col="blue",cex=1.5,
+     bg="blue",cex=1.5,
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 574","Arg574","Leu574"),cex=1,pt.cex=1.8,
@@ -216,11 +220,12 @@ plot(departeLight,lwd=0.8,border=grey(0.7),
      main="Position 578")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
-     col=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
+     col="transparent",
+     bg=rgb(50,100,0,150,maxColorValue=255),cex=1.1,
      add=TRUE)
 plot(ambro[ambro@data[,8]!=0,],
      pch=as.numeric(as.character(ambro[ambro@data[,8]!=0,]$SeqMeth)),
-     col="red",cex=1.5,
+     bg="red",cex=1.5,
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 578","Ile578"),cex=1,pt.cex=1.8,
