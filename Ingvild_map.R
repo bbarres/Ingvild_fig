@@ -467,6 +467,7 @@ par(op)
 #maps screening vs monitoring####
 ##############################################################################/
 
+#two maps, one screening, one monitoring
 op<-par(mar=c(0,0,1,0),mfrow=c(1,2))
 #original screening
 plot(departe,lwd=0.8,border=grey(0.7),
@@ -495,6 +496,30 @@ plot(ambro[ambro$RS!=0 & ambro$SampRound!="Screening",],
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 par(op)
 #export to .pdf 12 x 5 inches
+
+#one single map without R/S information
+op<-par(mar=c(0,0,1,0))
+#original screening
+plot(departe,lwd=0.8,border=grey(0.7),
+     main="Sampling type")
+plot(regions,lwd=1.8,add=TRUE)
+plot(ambro[ambro$SampRound!="Screening",],
+     pch=0,
+     col=rgb(31,133,235,175,maxColorValue=255),cex=1,
+     add=TRUE)
+plot(ambro[ambro$SampRound=="Screening",],
+     pch=1,
+     col=rgb(213,179,0,175,maxColorValue=255),cex=1,
+     add=TRUE)
+legend(760000,6200000,
+       legend=c("Screening (N=43)","Monitoring (N=210)"),
+       cex=0.8,pt.cex=1,y.intersp=1.2,x.intersp=0.8,
+       pch=c(1,0),
+       col=c(rgb(213,179,0,175,maxColorValue=255),
+             rgb(31,133,235,175,maxColorValue=255)),
+       bg="transparent",bty="n")
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+par(op)
 
 
 ##############################################################################/
