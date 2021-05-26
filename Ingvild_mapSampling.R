@@ -89,11 +89,11 @@ legend(100000,7120000,
              rgb(31,133,235,175,maxColorValue=255)),
        bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
-text(594045.1,6502086,labels="NAQ",cex=1.2,font=2)
-text(594045.1,6751660,labels="CVL",cex=1.2,font=2)
-text(742229.5,6515085,labels="ARA",cex=1.2,font=2)
-text(708433,6333104,labels="OCC",cex=1.2,font=2)
-text(412064,6720000,labels="PDL",cex=1.2,font=2)
+text(594045.1,6502086,labels="NAQ",cex=0.9,font=2,col=grey(0.3))
+text(594045.1,6751660,labels="CVL",cex=0.9,font=2,col=grey(0.3))
+text(742229.5,6515085,labels="ARA",cex=0.9,font=2,col=grey(0.3))
+text(708433,6333104,labels="OCC",cex=0.9,font=2,col=grey(0.3))
+text(412064,6720000,labels="PDL",cex=0.9,font=2,col=grey(0.3))
 par(op)
 
 #export to .pdf 5 x 5 inches
