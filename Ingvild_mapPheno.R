@@ -31,27 +31,6 @@ departeL.wgs<-spTransform(departeLight,
 regionsL.wgs<-spTransform(regionsLight,
                           CRS("+proj=longlat +datum=WGS84"))
 
-#crop a subparts of the map
-departe.1<-crop(departe,extent(364666.8,590540.8,6431338.8,6612096.8))
-departe.2<-crop(departe,extent(633281.3,844866.6,6600367.6,6790638.4))
-departe.3<-crop(departe,extent(747072.2,963827.9,6355840.0,6550171.5))
-departe.4<-crop(departe,extent(467049.9,697619.1,6204268.4,6388990.7))
-departe.5<-crop(departe,extent(487049.9,602334.5,6306629.5,6398990.7))
-regions.1<-crop(regions,extent(364666.8,590540.8,6431338.8,6612096.8))
-regions.2<-crop(regions,extent(633281.3,844866.6,6600367.6,6790638.4))
-regions.3<-crop(regions,extent(747072.2,963827.9,6355840.0,6550171.5))
-regions.4<-crop(regions,extent(467049.9,697619.1,6204268.4,6388990.7))
-regions.5<-crop(regions,extent(487049.9,602334.5,6306629.5,6398990.7))
-
-departe.wgs.1<-crop(departe.wgs,extent(-1.25,1.57,44.9,46.6))
-departe.wgs.2<-crop(departe.wgs,extent(2.13,4.95,46.5,48.2))
-departe.wgs.3<-crop(departe.wgs,extent(3.59,6.41,44.3,46.0))
-departe.wgs.4<-crop(departe.wgs,extent(0.15,2.97,42.9,44.6))
-regions.wgs.1<-crop(regions.wgs,extent(-1.25,1.57,44.9,46.6))
-regions.wgs.2<-crop(regions.wgs,extent(2.13,4.95,46.5,48.2))
-regions.wgs.3<-crop(regions.wgs,extent(3.59,6.41,44.3,46.0))
-regions.wgs.4<-crop(regions.wgs,extent(0.15,2.97,42.9,44.6))
-
 #load the resistance results for the 2020 campaign
 databruteTOT<-read.delim(
   "data/data_carto_pheno.txt",
@@ -113,10 +92,9 @@ scalebar <- function(loc,length,unit="km",division.cex=.8,...) {
 ##############################################################################/
 
 #one map for the 4 possibilities
-op<-par(mar=c(0,0,1,0))
+op<-par(mar=c(0,1,0,0))
 #Imazamox and/or Tribenuron phenotypes
-plot(departe,lwd=0.8,border=grey(0.9),
-     main="Bioassay phenotype (N=43)")
+plot(departe,lwd=0.8,border=grey(0.9))
 plot(regions,lwd=1.8,add=TRUE)
 segments(PheNew$Longitude,PheNew$Latitude,
          PheOri$Longitude,PheOri$Latitude,
@@ -150,25 +128,25 @@ plot(PheNew[PheNew$RS=="Mut",],
      col=rgb(10,60,200,255,maxColorValue=255),
      bg="transparent",cex=1.0,
      add=TRUE)
-legend(57000,6220000,
-       legend=c("Sensitive",
-                "Resistant to Imz",
-                "Resistant to Tbn",
-                "Resistant to Imz and Tbn",
-                "Mutation detected"),
-       cex=0.8,pt.cex=1,y.intersp=0.8,x.intersp=0.5,
+legend(10000,6550000,
+       legend=c("No resistant\nplants detected",
+                "Detection of resistant\nplants with imazamox",
+                "Detection of resistant\nplants with tribenuron",
+                "Detection of resistant\nplants with both herbicides",
+                "Mutation of the ALS\ngene detected"),
+       cex=0.6,pt.cex=1,y.intersp=2.3,x.intersp=1,
        pch=c(19,19,19,19,1),
        col=c(rgb(80,140,20,255,maxColorValue=255),
              rgb(244,114,208,255,maxColorValue=255),
              rgb(250,104,0,255,maxColorValue=255),
              rgb(220,31,31,255,maxColorValue=255),
              rgb(10,60,200,255,maxColorValue=255)),
-       bg="transparent",bty="n")
-text(594045.1,6502086,labels="NAQ",cex=1.2,font=2)
-text(594045.1,6751660,labels="CVL",cex=1.2,font=2)
-text(742229.5,6515085,labels="ARA",cex=1.2,font=2)
-text(708433,6333104,labels="OCC",cex=1.2,font=2)
-text(412064,6720000,labels="PDL",cex=1.2,font=2)
+       bg="transparent",bty="n",xpd=TRUE)
+text(594045.1,6502086,labels="NAQ",cex=0.9,font=2)
+text(594045.1,6751660,labels="CVL",cex=0.9,font=2)
+text(742229.5,6515085,labels="ARA",cex=0.9,font=2)
+text(708433,6333104,labels="OCC",cex=0.9,font=2)
+text(412064,6720000,labels="PDL",cex=0.9,font=2)
 # #if you want to add the name of the populations
 # text(x=PheNew$Longitude,y=PheNew$Latitude,
 #      labels=PheNew@data$Code_ID,cex=0.2)
