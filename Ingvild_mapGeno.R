@@ -31,27 +31,6 @@ departeL.wgs<-spTransform(departeLight,
 regionsL.wgs<-spTransform(regionsLight,
                           CRS("+proj=longlat +datum=WGS84"))
 
-#crop a subparts of the map
-departe.1<-crop(departe,extent(364666.8,590540.8,6431338.8,6612096.8))
-departe.2<-crop(departe,extent(633281.3,844866.6,6600367.6,6790638.4))
-departe.3<-crop(departe,extent(747072.2,963827.9,6355840.0,6550171.5))
-departe.4<-crop(departe,extent(467049.9,697619.1,6204268.4,6388990.7))
-departe.5<-crop(departe,extent(487049.9,602334.5,6306629.5,6398990.7))
-regions.1<-crop(regions,extent(364666.8,590540.8,6431338.8,6612096.8))
-regions.2<-crop(regions,extent(633281.3,844866.6,6600367.6,6790638.4))
-regions.3<-crop(regions,extent(747072.2,963827.9,6355840.0,6550171.5))
-regions.4<-crop(regions,extent(467049.9,697619.1,6204268.4,6388990.7))
-regions.5<-crop(regions,extent(487049.9,602334.5,6306629.5,6398990.7))
-
-departe.wgs.1<-crop(departe.wgs,extent(-1.25,1.57,44.9,46.6))
-departe.wgs.2<-crop(departe.wgs,extent(2.13,4.95,46.5,48.2))
-departe.wgs.3<-crop(departe.wgs,extent(3.59,6.41,44.3,46.0))
-departe.wgs.4<-crop(departe.wgs,extent(0.15,2.97,42.9,44.6))
-regions.wgs.1<-crop(regions.wgs,extent(-1.25,1.57,44.9,46.6))
-regions.wgs.2<-crop(regions.wgs,extent(2.13,4.95,46.5,48.2))
-regions.wgs.3<-crop(regions.wgs,extent(3.59,6.41,44.3,46.0))
-regions.wgs.4<-crop(regions.wgs,extent(0.15,2.97,42.9,44.6))
-
 #load the resistance results for the 2020 campaign
 databruteTOT<-read.delim(
   "data/data_carto_france.txt",
@@ -72,9 +51,6 @@ ambro.wgs<-SpatialPointsDataFrame(coords=databruteTOT[,c(3,2)],
                                   proj4string=CRS("+proj=longlat +datum=WGS84")
 )
 ambro<-spTransform(ambro.wgs,CRS("+init=epsg:2154"))
-
-#to catch the coordinates
-#locator()
 
 
 ##############################################################################/
@@ -108,7 +84,7 @@ op<-par(mar=c(0,0,1,0),mfrow=c(2,3))
 
 #position 197
 plot(departeLight,lwd=0.8,border=grey(0.7),
-     main="Position 197")
+     main="ALS codon 197")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
      col="transparent",
@@ -139,7 +115,7 @@ scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 205
 plot(departeLight,lwd=0.8,border=grey(0.7),
-     main="Position 205")
+     main="ALS codon 205")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
      col="transparent",
@@ -169,7 +145,7 @@ scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 376
 plot(departeLight,lwd=0.8,border=grey(0.7),
-     main="Position 376")
+     main="ALS codon 376")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
      col="transparent",
@@ -191,7 +167,7 @@ scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 574
 plot(departeLight,lwd=0.8,border=grey(0.7),
-     main="Position 574")
+     main="ALS codon 574")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
      col="transparent",
@@ -217,7 +193,7 @@ scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
 #position 578
 plot(departeLight,lwd=0.8,border=grey(0.7),
-     main="Position 578")
+     main="ALS codon 578")
 plot(regionsLight,lwd=1.8,add=TRUE)
 plot(ambro,pch=as.numeric(as.character(ambro$SeqMeth)),
      col="transparent",
