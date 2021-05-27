@@ -82,13 +82,13 @@ plot(ambro[ambro$SampRound=="Screening",],
      col=rgb(213,179,0,175,maxColorValue=255),cex=1,
      add=TRUE)
 legend(100000,7120000,
-       legend=c("Targeted sampling (N=43)","Random sampling (N=212)"),
+       legend=c("Targeted sampling (N=41)","Random sampling (N=214)"),
        cex=0.8,pt.cex=1,y.intersp=1.2,x.intersp=0.8,
        pch=c(1,0),
        col=c(rgb(213,179,0,175,maxColorValue=255),
              rgb(31,133,235,175,maxColorValue=255)),
        bg="transparent",bty="n")
-scalebar(c(191260,6060000),300000,"km",division.cex=1)
+scalebar(c(191260,6060000),300000,"km",division.cex=0.8)
 text(594045.1,6502086,labels="NAQ",cex=0.9,font=2,col=grey(0.3))
 text(594045.1,6751660,labels="CVL",cex=0.9,font=2,col=grey(0.3))
 text(742229.5,6515085,labels="ARA",cex=0.9,font=2,col=grey(0.3))

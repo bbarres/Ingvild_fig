@@ -150,7 +150,7 @@ text(412064,6720000,labels="PDL",cex=0.9,font=2,col=grey(0.3))
 # #if you want to add the name of the populations
 # text(x=PheNew$Longitude,y=PheNew$Latitude,
 #      labels=PheNew@data$Code_ID,cex=0.2)
-scalebar(c(191260,6060000),300000,"km",division.cex=1)
+scalebar(c(191260,6060000),300000,"km",division.cex=0.8)
 
 par(op)
 
