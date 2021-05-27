@@ -128,7 +128,7 @@ plot(PheNew[PheNew$RS=="Mut",],
      col=rgb(10,60,200,255,maxColorValue=255),
      bg="transparent",cex=1.0,
      add=TRUE)
-legend(10000,6550000,
+legend(10000,6750000,
        legend=c("No resistant\nplants detected",
                 "Detection of resistant\nplants with imazamox",
                 "Detection of resistant\nplants with tribenuron",
@@ -142,14 +142,16 @@ legend(10000,6550000,
              rgb(220,31,31,255,maxColorValue=255),
              rgb(10,60,200,255,maxColorValue=255)),
        bg="transparent",bty="n",xpd=TRUE)
-text(594045.1,6502086,labels="NAQ",cex=0.9,font=2)
-text(594045.1,6751660,labels="CVL",cex=0.9,font=2)
-text(742229.5,6515085,labels="ARA",cex=0.9,font=2)
-text(708433,6333104,labels="OCC",cex=0.9,font=2)
-text(412064,6720000,labels="PDL",cex=0.9,font=2)
+text(594045.1,6502086,labels="NAQ",cex=0.9,font=2,col=grey(0.3))
+text(594045.1,6751660,labels="CVL",cex=0.9,font=2,col=grey(0.3))
+text(742229.5,6515085,labels="ARA",cex=0.9,font=2,col=grey(0.3))
+text(708433,6333104,labels="OCC",cex=0.9,font=2,col=grey(0.3))
+text(412064,6720000,labels="PDL",cex=0.9,font=2,col=grey(0.3))
 # #if you want to add the name of the populations
 # text(x=PheNew$Longitude,y=PheNew$Latitude,
 #      labels=PheNew@data$Code_ID,cex=0.2)
+scalebar(c(191260,6060000),300000,"km",division.cex=1)
+
 par(op)
 
 #export to .pdf 5 x 5 inches
