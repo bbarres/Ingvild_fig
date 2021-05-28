@@ -105,11 +105,11 @@ plot(ambro[ambro@data[,11]!=0,],
 legend(57000,7160000,
        legend=c("No mutation at 197","Gln197","Ser197","Thr197"),
        cex=1,pt.cex=1.8,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=15,col=c(rgb(50,100,0,150,maxColorValue=255),
                     "red","blue","purple"),bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
@@ -135,11 +135,11 @@ plot(ambro[ambro@data[,14]!=0,],
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 205","Thr205.1","Thr205.2","Val205"),
-       cex=1,pt.cex=1.8,y.intersp=0.5,x.intersp=0.5,
+       cex=1,pt.cex=1.8,y.intersp=0.7,x.intersp=0.5,
        pch=15,col=c(rgb(50,100,0,150,maxColorValue=255),
                     "red","blue","purple"),bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
@@ -157,11 +157,11 @@ plot(ambro[ambro@data[,7]!=0,],
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 376","Glu376"),cex=1,pt.cex=1.8,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=15,col=c(rgb(50,100,0,150,maxColorValue=255),"red"),
        bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
@@ -183,11 +183,11 @@ plot(ambro[ambro@data[,9]!=0,],
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 574","Arg574","Leu574"),cex=1,pt.cex=1.8,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=15,col=c(rgb(50,100,0,150,maxColorValue=255),"red","blue"),
        bg="transparent",bty="n")
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
@@ -205,12 +205,12 @@ plot(ambro[ambro@data[,8]!=0,],
      add=TRUE)
 legend(57000,7160000,
        legend=c("No mutation at 578","Ile578"),cex=1,pt.cex=1.8,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=15,col=c(rgb(50,100,0,150,maxColorValue=255),"red"),
        bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 legend(850000,7160000,legend=c("Sanger","NGS"),cex=1,pt.cex=1.6,
-       y.intersp=0.5,x.intersp=0.5,
+       y.intersp=0.7,x.intersp=0.5,
        pch=c(2,1),col=c("black"),bg="transparent",bty="n")
 scalebar(c(191260,6060000),300000,"km",division.cex=1)
 
