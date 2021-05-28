@@ -82,7 +82,7 @@ plot(ambro[ambro$SampRound=="Targeted",],
      col=rgb(213,179,0,175,maxColorValue=255),cex=1,
      add=TRUE)
 legend(100000,7120000,
-       legend=c("Targeted sampling (N=43)","Random sampling (N=214)"),
+       legend=c("Targeted sampling (N=43)","Random sampling (N=213)"),
        cex=0.8,pt.cex=1,y.intersp=1.2,x.intersp=0.8,
        pch=c(1,0),
        col=c(rgb(213,179,0,175,maxColorValue=255),
